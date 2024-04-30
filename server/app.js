@@ -14,7 +14,7 @@ const clientsecret = process.env.SECRET;
 
 app.use(
   cors({
-    origin: "https://login-with-google-mern-murex.vercel.app",
+    origin: "*",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
