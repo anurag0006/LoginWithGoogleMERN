@@ -89,8 +89,21 @@ app.get(
 );
 
 app.get("/login/sucess", async (req, res) => {
-  console.log(req);
+  // console.log(req);
   console.log(req.user);
+
+  console.log(req.sessionStore.sessions);
+  for (key in req.sessionStore.sessions) {
+    const a = JSON.parse(req.sessionStore.sessions[key]);
+    console.log(JSON.parse(req.sessionStore.sessions[key]).passport);
+
+    if (a.passport) {
+      return res.status(200).json({
+        message: "user Login and succesfully verified",
+        user: a.passport.user,
+      });
+    }
+  }
   if (req.user) {
     res.status(200).json({ message: "user Login", user: req.user });
   } else {
